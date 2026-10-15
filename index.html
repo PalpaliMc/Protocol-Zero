@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b0a">
+  <meta name="description" content="Protocol Zero؛ تجربهٔ تعاملی فارسی برای یادگیری امنیت سایبری، حل معما و تمرین ترمینال در محیطی شبیه‌سازی‌شده.">
+  <title>Protocol Zero | پروتکل صفر</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="toast-region" id="toastRegion" aria-live="polite"></div>
+
+  <!-- AUTH SCREEN -->
+  <main id="authScreen" class="auth-screen">
+    <section class="auth-story">
+      <div class="brand brand-large"><span class="brand-mark">P<span>0</span></span><span>PROTOCOL<span class="brand-zero">ZERO</span></span></div>
+      <div class="story-copy">
+        <div class="eyebrow"><span class="status-dot"></span> شبکهٔ شبیه‌سازی‌شده فعال است</div>
+        <h1>هر سیستم،<br>یک <span>راز</span> دارد.</h1>
+        <p>وارد لایهٔ صفر شو. سرنخ‌ها را پیدا کن، رمزها را بشکن و مهارتت را در یک محیط امن و شبیه‌سازی‌شده ارتقا بده.</p>
+      </div>
+      <div class="mini-terminal" aria-label="نمایش ترمینال">
+        <div class="window-bar"><span></span><span></span><span></span><b>zero://terminal</b></div>
+        <div class="terminal-lines" id="introTerminal"></div>
+        <div class="terminal-cursor-row"><span>agent@zero</span><span>:</span><span>~</span><span>$</span><i class="cursor"></i></div>
+      </div>
+      <div class="story-foot"><span>نسخه 1.0.0</span><span>محیط آموزشی آفلاین‌محور</span><span class="red-label">CLASSIFIED / FICTIONAL</span></div>
+    </section>
+
+    <section class="auth-panel-wrap">
+      <div class="auth-panel">
+        <div class="mobile-brand brand"><span class="brand-mark">P<span>0</span></span><span>PROTOCOL<span class="brand-zero">ZERO</span></span></div>
+        <div class="auth-tabs" role="tablist" aria-label="انتخاب فرم">
+          <button class="auth-tab active" id="loginTab" role="tab" aria-selected="true" data-auth-mode="login">ورود</button>
+          <button class="auth-tab" id="registerTab" role="tab" aria-selected="false" data-auth-mode="register">ساخت حساب</button>
+        </div>
+        <div class="auth-heading">
+          <div class="section-kicker" id="authKicker">IDENTITY VERIFICATION</div>
+          <h2 id="authTitle">بازگشت به لایهٔ صفر</h2>
+          <p id="authSubtitle">اطلاعات ورودت را وارد کن تا عملیات ادامه پیدا کند.</p>
+        </div>
+        <form id="authForm" class="auth-form" novalidate>
+          <label class="field-label" for="authIdentity" id="identityLabel">نام کاربری یا ایمیل</label>
+          <div class="input-wrap"><span class="input-icon">⌁</span><input id="authIdentity" name="identity" autocomplete="username" placeholder="مثلاً agent_zero" required maxlength="48"><span class="field-signal"></span></div>
+          <div id="emailField" class="hidden-field">
+            <label class="field-label" for="authEmail">ایمیل (اختیاری)</label>
+            <div class="input-wrap"><span class="input-icon">＠</span><input id="authEmail" name="email" type="email" autocomplete="email" placeholder="you@example.com" maxlength="100"></div>
+          </div>
+          <label class="field-label" for="authPassword">رمز عبور</label>
+          <div class="input-wrap"><span class="input-icon">⌑</span><input id="authPassword" name="password" type="password" autocomplete="current-password" placeholder="حداقل ۸ کاراکتر" required minlength="8" maxlength="128"><button class="password-toggle" id="togglePassword" type="button" aria-label="نمایش رمز عبور">◉</button></div>
+          <div class="form-options" id="loginOptions"><label class="check-line"><input id="rememberMe" type="checkbox" checked><span></span> در این مرورگر وارد بمان</label><button class="text-button" id="localReset" type="button">پاک‌کردن حساب محلی</button></div>
+          <div id="authError" class="form-message" role="alert"></div>
+          <button class="primary-button auth-submit" id="authSubmit" type="submit"><span id="authSubmitText">ورود امن</span><span class="button-arrow">↙</span></button>
+        </form>
+        <div class="auth-divider"><span>یا</span></div>
+        <button class="secondary-button demo-button" id="demoLogin" type="button"><span class="demo-icon">⌘</span><span><b>ورود آزمایشی</b><small>بدون ساخت حساب، محیط را بررسی کن</small></span><span class="button-arrow">↙</span></button>
+        <p class="auth-legal">با ادامه‌دادن، می‌پذیری که این محیط یک شبیه‌ساز آموزشی است. <span>هیچ عملیات واقعی روی شبکه انجام نمی‌شود.</span></p>
+      </div>
+      <div class="auth-bottom"><span>SECURE SIMULATION / LOCAL PROFILE</span><span class="tiny-bars"><i></i><i></i><i></i><i></i><i></i></span></div>
+    </section>
+  </main>
+
+  <!-- APPLICATION -->
+  <div id="appShell" class="app-shell hidden">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-top">
+        <div class="brand"><span class="brand-mark">P<span>0</span></span><span>PROTOCOL<span class="brand-zero">ZERO</span></span></div>
+        <button class="icon-button sidebar-close" id="closeSidebar" aria-label="بستن منو">×</button>
+      </div>
+      <div class="workspace-chip"><span class="workspace-icon">⌬</span><span><b>Zero Network</b><small>محیط شبیه‌سازی</small></span><span class="online-pip"></span></div>
+      <div class="nav-caption">فضای کار</div>
+      <nav class="main-nav" aria-label="منوی اصلی">
+        <button class="nav-link active" data-view="overview"><span class="nav-symbol">▦</span> نمای کلی <span class="nav-shortcut">01</span></button>
+        <button class="nav-link" data-view="terminal"><span class="nav-symbol">&gt;_</span> ترمینال <span class="nav-shortcut">02</span></button>
+        <button class="nav-link" data-view="missions"><span class="nav-symbol">⌖</span> مأموریت‌ها <span class="nav-shortcut">03</span></button>
+        <button class="nav-link" data-view="achievements"><span class="nav-symbol">◇</span> دستاوردها <span class="nav-shortcut">04</span></button>
+      </nav>
+      <div class="nav-caption nav-caption-bottom">حساب کاربری</div>
+      <nav class="main-nav">
+        <button class="nav-link" data-view="profile"><span class="nav-symbol">◉</span> پروفایل</button>
+        <button class="nav-link" data-view="settings"><span class="nav-symbol">⚙</span> تنظیمات</button>
+      </nav>
+      <div class="sidebar-spacer"></div>
+      <div class="sidebar-mission">
+        <div class="mission-orbit"><span>0</span></div>
+        <div><small>وضعیت شبکه</small><b>تمام سیستم‌ها پایدارند</b><div class="status-track"><span></span></div></div>
+      </div>
+      <button class="user-card" id="sidebarProfile"><span class="avatar" id="sidebarAvatar">A</span><span class="user-meta"><b id="sidebarName">Agent Zero</b><small id="sidebarRole">اپراتور تازه‌کار</small></span><span class="user-menu-dots">···</span></button>
+    </aside>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div class="topbar-start"><button class="icon-button menu-open" id="openSidebar" aria-label="بازکردن منو">☰</button><div class="breadcrumb"><span>ZERO NETWORK</span><i>/</i><b id="breadcrumbCurrent">نمای کلی</b></div></div>
+        <div class="topbar-end"><div class="network-status"><span class="status-dot"></span><span>شبکه آنلاین</span></div><button class="icon-button sound-toggle" id="soundToggle" title="روشن/خاموش کردن صدا" aria-label="روشن یا خاموش کردن صدا">♫</button><button class="top-avatar avatar" id="topAvatar" aria-label="پروفایل">A</button></div>
+      </header>
+
+      <div class="view-container">
+        <!-- OVERVIEW -->
+        <section class="view active" id="view-overview">
+          <div class="welcome-row"><div><div class="section-kicker"><span class="red-square"></span> CONTROL CENTER / 01</div><h1>خوش برگشتی، <span id="welcomeName">اپراتور</span></h1><p class="muted">شبکه منتظر حرکت بعدی توست. آماده‌ای؟</p></div><div class="date-chip"><span class="date-icon">◷</span><span id="localDate">زمان سیستم</span></div></div>
+          <div class="hero-card"><div class="hero-grid" aria-hidden="true"></div><div class="hero-copy"><div class="hero-label"><span class="live-indicator"></span> مأموریت ویژه / ۰۰۱</div><div class="hero-code">PZ<span>:</span>001</div><h2>ردپای خاموش</h2><p>یک پیام رمزگذاری‌شده در شبکه پیدا شده. سرنخ‌ها را کنار هم بگذار و عبارت مخفی را کشف کن.</p><button class="primary-button" id="heroMission">شروع مأموریت <span class="button-arrow">↙</span></button></div><div class="hero-art" aria-hidden="true"><div class="radar radar-one"></div><div class="radar radar-two"></div><div class="radar-center">P<span>0</span></div><div class="radar-cross cross-a"></div><div class="radar-cross cross-b"></div><span class="radar-label label-a">NODE_07</span><span class="radar-label label-b">SIGNAL FOUND</span><span class="radar-label label-c">35° 41' 22"</span></div><div class="hero-footer"><span><i class="tiny-red-dot"></i> سطح دسترسی: محدود</span><span>پیشرفت مأموریت <b id="heroProgress">۰٪</b></span></div></div>
+          <div class="stats-grid"><article class="stat-card"><div class="stat-top"><span>امتیاز تجربه</span><span class="stat-icon green-icon">✳</span></div><div class="stat-value" id="statXp">000 <small>XP</small></div><div class="stat-foot"><span class="green-text">+ <span id="statSessionXp">0</span> این جلسه</span><span>از حل معماها</span></div></article><article class="stat-card"><div class="stat-top"><span>مأموریت‌های تکمیل‌شده</span><span class="stat-icon red-icon">⌁</span></div><div class="stat-value" id="statMissions">۰ <small>/ ۵</small></div><div class="stat-foot"><span>پیشرفت کلی</span><span id="missionPercent">۰٪</span></div><div class="mini-progress"><span id="missionProgressBar"></span></div></article><article class="stat-card"><div class="stat-top"><span>رتبه اپراتور</span><span class="stat-icon violet-icon">◇</span></div><div class="stat-value stat-rank" id="statRank">ROOKIE</div><div class="stat-foot"><span>سطح <b id="statLevel">۱</b></span><span id="nextRankText">شروع مسیر</span></div></article></div>
+          <div class="content-grid"><section class="panel recent-panel"><div class="panel-heading"><div><div class="section-kicker">ACTIVITY LOG</div><h3>آخرین فعالیت‌ها</h3></div><button class="subtle-button" data-navigate="terminal">بازکردن ترمینال ↙</button></div><div class="activity-list" id="activityList"></div></section><section class="panel quick-panel"><div class="panel-heading"><div><div class="section-kicker">QUICK ACCESS</div><h3>دسترسی سریع</h3></div><span class="panel-count">۰<span>۳</span></span></div><button class="quick-link" data-navigate="terminal"><span class="quick-icon">&gt;_</span><span><b>ترمینال</b><small>اجرای فرمان‌ها</small></span><i>↙</i></button><button class="quick-link" data-navigate="missions"><span class="quick-icon quick-icon-red">⌖</span><span><b>مأموریت‌ها</b><small>چالش‌های فعال</small></span><i>↙</i></button><button class="quick-link" data-navigate="achievements"><span class="quick-icon quick-icon-violet">◇</span><span><b>دستاوردها</b><small>نشان‌های تو</small></span><i>↙</i></button></section></div>
+        </section>
+
+        <!-- TERMINAL -->
+        <section class="view" id="view-terminal">
+          <div class="page-heading"><div><div class="section-kicker">INTERACTIVE SHELL / 02</div><h1>ترمینال <span class="green-text">پروتکل صفر</span></h1><p class="muted">فرمان وارد کن و محیط تمرینی را کشف کن. این ترمینال واقعی نیست.</p></div><button class="secondary-button compact-button" id="clearTerminal">پاک‌کردن صفحه</button></div>
+          <div class="terminal-panel"><div class="terminal-top"><div class="terminal-lights"><i></i><i></i><i></i></div><span>agent@protocol-zero: ~</span><button id="terminalHelp">راهنما <span>?</span></button></div><div class="terminal-output" id="terminalOutput" role="log" aria-live="polite"><div class="term-muted">Protocol Zero Shell v1.0.0</div><div class="term-muted">محیط آموزشی؛ برای مشاهده فرمان‌ها، <b>help</b> را وارد کن.</div><div class="term-separator">────────────────────────────────────────────────────</div></div><form id="terminalForm" class="terminal-input-row"><span class="term-prompt">agent@zero <b>~</b> $</span><input id="terminalInput" autocomplete="off" spellcheck="false" aria-label="فرمان ترمینال" placeholder="فرمان را وارد کن..." maxlength="140"><button type="submit" aria-label="اجرای فرمان">↵</button></form><div class="terminal-bottom"><span><i class="status-dot"></i> محیط محلی فعال</span><span>UTF-8 <i class="terminal-bottom-sep">/</i> خط <b id="terminalLineCount">1</b></span></div></div>
+          <div class="terminal-command-chips"><span>امتحان کن:</span><button data-command="help">help</button><button data-command="status">status</button><button data-command="missions">missions</button><button data-command="whoami">whoami</button><button data-command="scan">scan</button></div>
+          <div class="notice-card"><span class="notice-symbol">ⓘ</span><p><b>یادآوری امنیتی:</b> همه فرمان‌ها ساختگی و محلی‌اند. این بخش هیچ آدرس اینترنتی را اسکن نمی‌کند و به فایل‌های کامپیوترت دسترسی ندارد.</p></div>
+        </section>
+
+        <!-- MISSIONS -->
+        <section class="view" id="view-missions">
+          <div class="page-heading"><div><div class="section-kicker">MISSION ARCHIVE / 03</div><h1>آرشیو <span class="green-text">مأموریت‌ها</span></h1><p class="muted">با منطق، دقت و کمی کنجکاوی، هر پرونده را باز کن.</p></div><div class="heading-counter"><b id="missionsHeaderCount">۰ / ۵</b><small>تکمیل‌شده</small></div></div>
+          <div class="mission-filter"><button class="filter-btn active" data-filter="all">همهٔ مأموریت‌ها <span>۰۵</span></button><button class="filter-btn" data-filter="open">در دسترس</button><button class="filter-btn" data-filter="completed">تکمیل‌شده</button></div>
+          <div class="missions-grid" id="missionsGrid"></div>
+        </section>
+
+        <!-- ACHIEVEMENTS -->
+        <section class="view" id="view-achievements">
+          <div class="page-heading"><div><div class="section-kicker">OPERATOR RECORD / 04</div><h1>تالار <span class="green-text">دستاوردها</span></h1><p class="muted">هر نشان، مدرکی از چیزی است که یاد گرفتی.</p></div><div class="heading-counter"><b id="badgeCount">۰ / ۶</b><small>نشان‌ها</small></div></div>
+          <div class="achievement-summary"><div class="achievement-emblem">◇</div><div><span class="section-kicker">YOUR COLLECTION</span><h2 id="achievementSummaryTitle">هنوز اول راهی</h2><p id="achievementSummaryText">مأموریت‌ها را حل کن تا مجموعهٔ نشان‌هایت کامل شود.</p></div><div class="achievement-progress"><b id="badgePercent">۰٪</b><span>مجموعه کامل</span></div></div>
+          <div class="badges-grid" id="badgesGrid"></div>
+        </section>
+
+        <!-- PROFILE -->
+        <section class="view" id="view-profile">
+          <div class="page-heading"><div><div class="section-kicker">OPERATOR ID / 05</div><h1>پروفایل <span class="green-text">اپراتور</span></h1><p class="muted">هویت محلی خودت را در شبکه مدیریت کن.</p></div></div>
+          <div class="profile-layout"><section class="panel profile-identity"><div class="profile-avatar-large" id="profileAvatarLarge">A</div><h2 id="profileDisplayName">Agent Zero</h2><span class="profile-handle" id="profileHandle">@agent_zero</span><div class="rank-pill"><span>◇</span><b id="profileRank">ROOKIE</b></div><div class="profile-divider"></div><div class="profile-info-row"><span>تاریخ عضویت</span><b id="profileJoined">امروز</b></div><div class="profile-info-row"><span>وضعیت</span><b class="green-text">● فعال</b></div><div class="profile-info-row"><span>امتیاز تجربه</span><b id="profileXp">۰ XP</b></div></section><section class="panel profile-edit"><div class="panel-heading"><div><div class="section-kicker">IDENTITY SETTINGS</div><h3>ویرایش اطلاعات</h3></div></div><form id="profileForm" class="settings-form"><label class="field-label" for="profileNameInput">نام نمایشی</label><input class="standard-input" id="profileNameInput" maxlength="32" required placeholder="نامی که در سایت دیده می‌شود"><label class="field-label" for="profileBioInput">دربارهٔ من</label><textarea class="standard-input standard-textarea" id="profileBioInput" maxlength="180" placeholder="یک جمله دربارهٔ مسیر یادگیری‌ات..."></textarea><div class="form-message" id="profileMessage"></div><button class="primary-button" type="submit">ذخیره تغییرات <span class="button-arrow">↙</span></button></form></section></div>
+        </section>
+
+        <!-- SETTINGS -->
+        <section class="view" id="view-settings">
+          <div class="page-heading"><div><div class="section-kicker">SYSTEM PREFERENCES / 06</div><h1>تنظیمات <span class="green-text">سیستم</span></h1><p class="muted">محیط کار را مطابق سلیقهٔ خودت تنظیم کن.</p></div></div>
+          <div class="settings-list"><section class="panel setting-block"><div class="setting-heading"><span class="setting-icon">♫</span><div><h3>صدای رابط کاربری</h3><p>صدای کوتاه برای بازخورد فرمان‌ها و تعامل‌ها</p></div><label class="switch"><input id="soundSetting" type="checkbox"><span></span></label></div><div class="setting-divider"></div><div class="setting-heading"><span class="setting-icon">⌘</span><div><h3>حرکت‌های رابط کاربری</h3><p>انیمیشن ورود و افکت‌های حرکتی را فعال کن</p></div><label class="switch"><input id="motionSetting" type="checkbox" checked><span></span></label></div><div class="setting-divider"></div><div class="setting-heading"><span class="setting-icon">▤</span><div><h3>ذخیره پیشرفت</h3><p>امتیاز و مأموریت‌ها در همین مرورگر ذخیره می‌شوند.</p></div><span class="local-tag">LOCAL STORAGE</span></div></section><section class="panel danger-zone"><div class="setting-heading"><span class="setting-icon danger-icon">!</span><div><h3>منطقهٔ حساس</h3><p>پاک‌کردن پیشرفت یا خروج از حساب این مرورگر</p></div></div><div class="danger-actions"><button class="secondary-button" id="resetProgress">بازنشانی پیشرفت</button><button class="danger-button" id="logoutButton">خروج از حساب ↙</button></div></section><div class="privacy-note"><span>ⓘ</span><p><b>محدودیت نسخهٔ ایستا:</b> این سایت سرور احراز هویت ندارد. حساب‌ها و پیشرفت‌ها فقط در مرورگر فعلی ذخیره می‌شوند و برای اطلاعات حساس یا حساب واقعی مناسب نیستند. پاک‌کردن داده‌های مرورگر ممکن است آن‌ها را حذف کند.</p></div></div>
+        </section>
+      </div>
+      <footer class="app-footer"><span>PROTOCOL ZERO <b>©</b> 2026</span><span>ساخته‌شده برای ذهن‌های کنجکاو <i>✳</i></span><span class="footer-version">BUILD 1.0.0 / STATIC</span></footer>
+    </main>
+  </div>
+
+  <!-- MISSION MODAL -->
+  <div class="modal-backdrop hidden" id="missionModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><section class="mission-modal"><div class="modal-top"><span class="modal-mission-id" id="modalMissionId">PZ:001</span><button class="icon-button" id="closeMissionModal" aria-label="بستن پنجره">×</button></div><div class="modal-content"><div class="section-kicker" id="modalCategory">CRYPTO ANALYSIS</div><h2 id="modalTitle">ردپای خاموش</h2><p id="modalDescription"></p><div class="evidence-box"><div class="evidence-title"><span>▤</span> شواهد بازیابی‌شده <span class="evidence-status">CLASSIFIED</span></div><pre id="modalEvidence"></pre></div><div id="modalHint" class="hint-box hidden">سرنخ: <span id="modalHintText"></span></div><form id="missionAnswerForm" class="answer-form"><label for="missionAnswer" class="field-label">پاسخ رمز</label><div class="answer-input-wrap"><input id="missionAnswer" autocomplete="off" maxlength="100" placeholder="پاسخ را وارد کن..." required><button type="submit">بررسی <span>↙</span></button></div><div class="form-message" id="missionMessage"></div></form><button id="showHintButton" class="text-button hint-button" type="button">⌁ درخواست سرنخ <span id="hintCost">رایگان</span></button></div></section></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
